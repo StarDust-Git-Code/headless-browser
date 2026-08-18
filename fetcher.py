@@ -15,7 +15,7 @@ from playwright.async_api import async_playwright, Error as PlaywrightError
 
 DEFAULT_CDP_URL = os.getenv(
     "OBSCURA_CDP_URL",
-    "wss://headless-browser-xiuu.onrender.com"
+    "ws://127.0.0.1:9222"
 )
 
 def normalize_cdp_url(url: str) -> str:

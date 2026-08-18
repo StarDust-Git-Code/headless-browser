@@ -1,16 +1,16 @@
 services:
   - type: web
-    name: obscura-browser-engine
+    name: headless-web-api
     runtime: docker
-    plan: standard # Recommended for headless browser workloads (2 GB RAM)
+    plan: standard # Recommended for browser workloads (2 GB RAM)
     region: oregon
     dockerfilePath: ./Dockerfile
     envVars:
       - key: PORT
         value: "10000"
+      - key: OBSCURA_CDP_URL
+        value: "ws://127.0.0.1:9222"
       - key: OBSCURA_NETWORK_BODY_BUFFER_BYTES
-        value: "104857600" # 100 MB buffer for high volume data streams
-      - key: OBSCURA_STEALTH
-        value: "on"
-    healthCheckPath: /
+        value: "104857600"
+    healthCheckPath: /health
     autoDeploy: true

@@ -17,7 +17,12 @@ import uvicorn
 
 from search_web import search_web
 from read_url import read_url_content
-from fetcher import fetch_web_page, DEFAULT_CDP_URL
+from fetcher import fetch_web_page
+
+DEFAULT_CDP_URL = os.getenv(
+    "OBSCURA_CDP_URL",
+    "ws://127.0.0.1:9222"
+)
 
 app = FastAPI(
     title="Headless Web Tools REST API",
