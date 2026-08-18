@@ -50,4 +50,4 @@ EXPOSE 10000
 
 # Set default execution command
 ENTRYPOINT ["obscura"]
-CMD ["serve", "--host", "0.0.0.0", "--port", "10000", "--stealth", "on"]
+CMD ["serve", "--host", "0.0.0.0", "--port", "10000", "--stealth"]
