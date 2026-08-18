@@ -12,7 +12,7 @@ WORKDIR /tmp
 # Dynamically fetch the official v0.2.0 x86_64 Linux release binary from GitHub Releases
 RUN set -eux; \
     ASSET_URL=$(curl -s https://api.github.com/repos/h4ckf0r0day/obscura/releases/tags/v0.2.0 \
-      | jq -r '.assets[]? | select(.name | contains("x86_64") and contains("linux")) | .browser_download_url' \
+      | jq -r '.assets[]? | select(.name | contains("x86_64") and contains("linux") and (contains("no-render") | not)) | .browser_download_url' \
       | head -n 1); \
     if [ -z "$ASSET_URL" ] || [ "$ASSET_URL" = "null" ]; then \
       ASSET_URL="https://github.com/h4ckf0r0day/obscura/releases/download/v0.2.0/obscura-x86_64-unknown-linux-gnu.tar.gz"; \

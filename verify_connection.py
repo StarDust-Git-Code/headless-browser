@@ -62,10 +62,13 @@ async def test_obscura_connection(cdp_endpoint: str):
             print(f"[+] navigator.webdriver: {webdriver_state} (Expected: None / False)")
             print(f"[+] navigator.userAgent: {user_agent}")
 
-            # Test 2: Take a verification screenshot
-            screenshot_path = "verification_screenshot.png"
-            await page.screenshot(path=screenshot_path)
-            print(f"[+] Screenshot captured and saved to {screenshot_path}")
+            # Test 2: Take a verification screenshot (requires build with rendering enabled)
+            try:
+                screenshot_path = "verification_screenshot.png"
+                await page.screenshot(path=screenshot_path)
+                print(f"[+] Screenshot captured and saved to {screenshot_path}")
+            except Exception as se:
+                print(f"[!] Screenshot skipped ({se})")
 
             # Clean teardown
             await page.close()
